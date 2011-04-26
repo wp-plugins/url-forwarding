@@ -3,13 +3,24 @@ Contributors: OllyBenson
 Link: http://www.code.co.uk
 Tags: url forwarding, redirecting, legacy pages, campaign, url
 Tested up to: 3.1.1
-Stable: trunk 
+Stable tag: trunk 
 
 Redirect/forward urls to a particular page or post within Wordpress (eg a legacy URL)
 
 == Description ==
 
-The plugin redirects legacy URLs from old websites that have been converted into a Wordpress site. It obviously can also be used for other redirecting, eg having a short URL that directs to a page as part of a campaign.
+
+The plugin redirects legacy URLs a previous version of a websites that has since been converted into a Wordpress site. It can also be used for other redirecting, eg having a short URL that directs to a page as part of a campaign.
+
+For example:
+
+http://www.example.com/old-page.html
+
+Can be directed to:
+
+http://www.example.com/2011/04/25/new-page.html
+
+Simply by adding 'old-page.html' as a custom field when editing new-page within Wordpress.
 
 Every time a 404 page is called, the Legacy URL plugin checks the database and if it find a legacy-url value that exactly matches the URL it will redirect to the new page.
 
@@ -17,13 +28,9 @@ Please note that this plugin has no settings/options pages within the Wordpress 
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. All you need to do is install and enable the plugin,
+1. Install and enable the plugin,
 1. Add a custom field in the post or page with the name *legacy-url* and the value as the URL excluding the domain name. So if the old page is *http://www.example.com/this-is-an-old-page.html*, the value of the custom field should be *this-is-an-old-page.html*.
-1. Add the code: `doUrlFowarding();` as the first line (after the commented-out metadata) of the 404 page in your theme.  In the TwentyTen theme this is 404.php and `doUrlForwarding();` would go before the `get_header();` command.
+1. Add the code: `doUrlFowarding();` as the first line (after any commented-out metadata) of the 404 page in your theme.  In the TwentyTen theme this is 404.php and `doUrlForwarding();` would go before the `get_header();` command.
 
 == Things to note ==
 
