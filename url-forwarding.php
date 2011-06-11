@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Legacy URL Forwarding
-Plugin URI: http://code.olib.co.uk/2011/04/25/wordpress-plugin-forwarding-redirecting-campaign-legacy-urls/
+Plugin URI: http://code.olib.co.uk/
 Description: Allows you to have old URLs redirected the correct post/page of Wordpress
-Version: 1.1
+Version: 1.2
 Author: OllyBenson
 Author URI: http://code.olib.co.uk
 License: GPL2
@@ -25,17 +25,16 @@ License: GPL2
 /*
 To function call this function: doUrlForwarding(); at the first line of code on the 404.php page.
 */
+DEFINE('REDIRECT_TYPE','301');
+
 function doUrlForwarding() {
   $filename = strtolower(str_replace(get_home_url()."/","","http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
-  $query = new WP_Query( array('meta_key' => 'legacy-url', 'meta_value'=>$filename));
- if (!empty($query->post->ID)) $id = $query->post->ID;
-    else {
-      $query2 = new WP_Query( array('meta_key' => 'legacy-url', 'meta_value'=>$filename, 'post_type'=>'page'));
-      if (!empty($query2->post->ID)) $id = $query2->post->ID;  
-      } 
-if (isset($id)) {
-    header('Location:'.get_permalink($id));
-    exit;
+  $query = new WP_Query( array('meta_key' => 'legacy-url', 'meta_value'=>$filename,'post_type'=>'any'));
+  if (!empty($query->post->ID)) {
+    wp_redirect(get_permalink($query->post->ID),REDIRECT_TYPE);
     }
-}
+  }
+
+add_action('404_template','doUrlForwarding');
+
 ?>

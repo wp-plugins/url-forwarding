@@ -30,7 +30,9 @@ Please note that this plugin has no settings/options pages within the Wordpress 
 
 1. Install and enable the plugin,
 1. Add a custom field in the post or page with the name *legacy-url* and the value as the URL excluding the domain name. So if the old page is *http://www.example.com/this-is-an-old-page.html*, the value of the custom field should be *this-is-an-old-page.html*.
-1. Add the code: `doUrlFowarding();` as the first line (after any commented-out metadata) of the 404 page in your theme.  In the TwentyTen theme this is 404.php and `doUrlForwarding();` would go before the `get_header();` command.
+
+Please note, there is no longer a requirement to manually amend the 404 page. If you have done so, you should remove the *doUrlForwarding();* line from the 404 page.
+
 
 == Things to note ==
 
@@ -40,3 +42,10 @@ Please note that this plugin has no settings/options pages within the Wordpress 
 * This is a simple solution, and possibly quite inefficient. It uses header redirects so will effectively process one page and then load another.
 * Because it redirects, search engines will not store the campaign/legacy URL but the page it is redirected to. The more sensible ones (eg Google) will note the redirected page and update their internal databases.
 * You can change the name of the custom field that the plugin searches by amending the function itself.
+
+== Changelog ==
+
+= 1.2 =
+* Makes use of Wordpress's built-in redirect functionality.
+* Uses a hook to add the plugin to the 404 page, so no longer a requirement to amend the 404 page manually.
+* No longer makes distinct queries to check for posts and pages, instead searches for 'any' page type.
