@@ -29,7 +29,7 @@ To function call this function: doUrlForwarding(); at the first line of code on 
 function doUrlForwarding() {
 	$filename = substr(sprintf("http://%s%s",$_SERVER['HTTP_HOST'],$_SERVER['REQUEST_URI']),(strlen(get_home_url()."/"))); // remove the ."/" after get_home_url if your legacy_urls start with /
 	$query = new WP_Query(array('post_type'=>'any','meta_query' => array(array('key' => 'legacy-url','value' =>$filename))));
-	if (!empty($query->post->ID)) wp_redirect(get_permalink($query->post->ID),'301') // Change 301 if you wante a different redirect type;
+	if (!empty($query->post->ID)) wp_redirect(get_permalink($query->post->ID),'301'); // Change 301 if you wante a different redirect type;
 	}
 
 add_action('404_template','doUrlForwarding');
