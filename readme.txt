@@ -2,7 +2,7 @@
 Contributors: OllyBenson
 Link: http://www.code.co.uk
 Tags: url forwarding, redirecting, legacy pages, campaign, url
-Tested up to: 3.1.1
+Tested up to: 3.2.1
 Stable tag: trunk 
 
 Redirect/forward urls to a particular page or post within Wordpress (eg a legacy URL)
@@ -44,6 +44,12 @@ Please note, there is no longer a requirement to manually amend the 404 page. If
 * You can change the name of the custom field that the plugin searches by amending the function itself.
 
 == Changelog ==
+
+= 1.3 =
+* Updated to make use of meta_query functionality
+* Revised method of getting url to check against, removing need for str_replace functionality.
+* Cleared unnecessary cnstant definition, brackets and spaces
+* Added additional commenting to help amend plugin.
 
 = 1.2 =
 * Makes use of Wordpress's built-in redirect functionality.
